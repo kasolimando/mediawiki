@@ -30,14 +30,11 @@ services:
       - 8080:80
     volumes:
       - mediawiki_data:/var/www/html/
-# After initial setup, download LocalSettings.php to the same directory as
-# this yaml and uncomment the following line and use compose to restart
-# the mediawiki service
-      - ./LocalSettings.php:/var/www/html/LocalSettings.php
     depends_on:
       database:
         condition: service_healthy
         restart: true
+    entrypoint: sh -c "while ! docker-compose exec -T database mysqladmin ping -h mediawiki-database-1 --silent -u wikimedia -pwikimedia; do sleep 1; done && cp /var/www/html/LocalSettings.php /var/www/html/ && apache2-foreground"
 
 volumes:
   mysql_data:
