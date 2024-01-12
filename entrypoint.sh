@@ -1,4 +1,4 @@
-  GNU nano 7.2                                     entrypoint.sh *                                            set -e
+set -e
 
 if [ ! -f "/var/www/html/LocalSettings.php" ]; then
   echo "LocalSettings.php not found. Running MediaWiki setup..."
