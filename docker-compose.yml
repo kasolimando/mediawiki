@@ -1,9 +1,5 @@
-# MediaWiki with MySQL
-# Access via "http://localhost:8080"
-#   (or "http://$(docker-machine ip):8080" if using docker-machine)
 version: '3'
 services:
-
   database:
     image: mysql:5.7
     restart: always
@@ -22,7 +18,9 @@ services:
       retries: 10
 
   mediawiki:
-    image: mediawiki
+    build:
+      context: .
+      dockerfile: Dockerfile
     restart: always
     networks:
       - docker_network
@@ -34,7 +32,6 @@ services:
       database:
         condition: service_healthy
         restart: true
-    entrypoint: sh -c "while ! docker-compose exec -T database mysqladmin ping -h mediawiki-database-1 --silent -u wikimedia -pwikimedia; do sleep 1; done && cp /var/www/html/LocalSettings.php /var/www/html/ && apache2-foreground"
 
 volumes:
   mysql_data:
