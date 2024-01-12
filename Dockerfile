@@ -1,4 +1,4 @@
-  GNU nano 7.2                                      Dockerfile                                                FROM mediawiki
+FROM mediawiki
 
 COPY entrypoint.sh /var/www/html/entrypoint.sh
 
