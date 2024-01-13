@@ -26,6 +26,18 @@ services:
       - docker_network
     ports:
       - 8080:80
+    environment:
+      CONF_PATH: /var/www/html
+      DBSERVER: mediawiki-database-1
+      DBTYPE: mysql
+      DBNAME: wiki_db
+      DBUSER: wikimedia
+      DBPASS: wikimedia
+      PASS: 123456789CKpocho
+      INSTALL_PASS: wikimedia
+      INSTALL_USER: wikimedia
+      SERVER: http://192.168.56.2:8080
+      MEDIAWIKI_NAME: MediwikiEquipo1
     volumes:
       - mediawiki_data:/var/www/html/
     depends_on:
