@@ -1,6 +1,6 @@
 # MediaWiki Docker Compose
 
-Este repositorio contiene un archivo docker-compose.yml para configurar un entorno de desarrollo local de MediaWiki utilizando una base de datos MySQL y una imagen de MediaWiki. Además, se incluye un archivo LocalSettings.php preconfigurado con las configuraciones necesarias para la base de datos, directorios y archivos de MediaWiki.
+This repository provides everything you need to run MediaWiki in a Docker container. It includes a Dockerfile to build the MediaWiki image, an entrypoint script to start the MediaWiki server, and a docker-compose file to configure and run the containers.
 
 ## Requisitos previos
 
@@ -10,17 +10,16 @@ Asegúrate de tener los siguientes requisitos previos instalados en tu máquina:
 - Docker Compose: [Instrucciones de instalación](https://docs.docker.com/compose/install/)
 
 ## Configuración
+Before running the application, some configuration is required. Follow these steps:
 
-Antes de ejecutar la aplicación, es necesario configurar algunos parámetros. Sigue los pasos a continuación:
+Open the LocalSettings.php file located in the /var/www/html/ directory.
+Update the configurations as per your needs. Ensure you provide the correct database information, directories, and MediaWiki files.
 
-1. Abre el archivo 'LocalSettings.php` ubicado en la carpeta '/var/www/html/'.
-2. Actualiza las configuraciones según tus necesidades. Asegúrate de proporcionar la información correcta de la base de datos, directorios y archivos de MediaWiki.
-
-   // Configuración de la base de datos
-   $wgDBserver = "mysql";
+   // Database Configuration
+   
    $wgDBname = "mediawiki";
    $wgDBuser = "root";
    $wgDBpassword = "password";
 
-   // Configuración de directorios y archivos
+   // Directory and File Configuration
    $wgUploadDirectory = "/var/www/html/images";
